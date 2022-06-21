@@ -296,6 +296,7 @@ class _HomeState extends State<Home> {
                                           OutlinedButton.icon(onPressed: () async {
                                             await dbHelper.insertBirthday(Birthday(name: name, date: date.toString()+' '+month, relation: relation, dayth: date+monthdays[month] as int));
                                             l = await dbHelper.birthdays();
+                                            display_l = await dbHelper.birthdays();
                                             setState(() {
                                             });
                                             Navigator.pop(context);
@@ -370,6 +371,7 @@ class _HomeState extends State<Home> {
                                             children: [
                                               OutlinedButton.icon(onPressed: () async {
                                                 await dbHelper.deleteBirthday(l[index].name);
+                                                l = await dbHelper.birthdays();
                                                 display_l = await dbHelper.birthdays();
                                                 setState(() {
                                                 });
@@ -471,7 +473,7 @@ class _HomeState extends State<Home> {
                                                                     await dbHelper.deleteBirthday(l[index].name);
                                                                     await dbHelper.insertBirthday(Birthday(name: newname, date: newdate.toString() + ' ' + newmonth.trim(), relation: newrelation, dayth: (newdate+monthdays[newmonth.trim()]) as int));
                                                                     l = await dbHelper.birthdays();
-
+                                                                    display_l = await dbHelper.birthdays();
                                                                     Navigator.pop(context);
 
                                                                   }, icon: const Icon(Icons.done_rounded), label: const Text('Update'))
